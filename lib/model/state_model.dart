@@ -5,15 +5,19 @@
  * @date : 2020-04-06 18:38
  **/
 
-import 'package:flutter/cupertino.dart';
-import 'package:provider/provider.dart';
+import 'package:flutter/material.dart';
 
-class StateManagement with ChangeNotifier{
-  int _count = 0;
-  int get count => _count;
+class StateManagement with ChangeNotifier {
+  Map<String, dynamic> _states = {'count': '-1'};
 
-  void updateCount(count){
-    _count =  count;
+  void setValue(key, value) {
+    _states[key] = value;
     notifyListeners();
   }
+
+  void clearStates() {
+    _states = {};
+  }
+
+  get states => _states;
 }

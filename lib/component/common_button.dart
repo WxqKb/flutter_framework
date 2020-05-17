@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-class globalButton extends RaisedButton {
+class GlobalButton extends RaisedButton {
   @required
   VoidCallback onPress;
   String text = "";
 
-  globalButton({this.onPress, this.text});
+  GlobalButton({this.onPress, this.text});
 
   @override
   Color get color => const Color(0xffFF7E5C);

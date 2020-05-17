@@ -6,7 +6,7 @@
  **/
 
 class Api{
-  static final String BASE_URL = "";
+  static final String BASE_URL = "sit.xxxxtech.com";
   static final String WS_URL = "ws://" + BASE_URL + "/ws";
   static final String REDIRECT_URL = "https://" + BASE_URL + "/app/";
   static final String LOGIN = "android/login";
