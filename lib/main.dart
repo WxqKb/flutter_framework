@@ -1,13 +1,13 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_app/tabbarPage.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_app/viewModel/userBindingViewModel.dart';
 import 'package:provider/provider.dart';
 
 import 'model/state_model.dart';
 import 'view/userBindingPage.dart';
+import 'viewModel/loginViewModel.dart';
+import 'viewModel/userBindingViewModel.dart';
 
 void main() => runApp(MyApp());
 
@@ -21,7 +21,12 @@ class MyApp extends StatelessWidget {
     //将style设置到app
     SystemChrome.setSystemUIOverlayStyle(_style);
     return MultiProvider(
-        providers: [ChangeNotifierProvider(create: (_) => UserBindingViewModel())],
+        providers: [
+          ChangeNotifierProvider(create: (_) => LoginViewModel()),
+          ChangeNotifierProvider(
+            create: (_) => UserBindingViewModel(),
+          )
+        ],
         child:
             Consumer<UserBindingViewModel>(builder: (context, stateManagement, _) {
           return MaterialApp(

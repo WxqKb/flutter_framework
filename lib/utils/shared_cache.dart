@@ -12,6 +12,16 @@ saveToken(String token) async {
   prefs.setString("token", token);
 }
 
+saveName(String userName) async {
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  prefs.setString("userName", userName);
+}
+
+savePassword(String pwd) async {
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  prefs.setString("password", pwd);
+}
+
 getPreferences(String key)async{
   SharedPreferences prefs = await SharedPreferences.getInstance();
   return prefs.getString(key);

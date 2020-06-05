@@ -6,12 +6,12 @@
  **/
 
 import 'package:dio/dio.dart';
-import 'package:flutter_app/model/common_model.dart';
+import '../model/common_model.dart';
 import 'dart:async';
 
 import 'package:shared_preferences/shared_preferences.dart';
 import '../config/api.dart';
-import './toast.dart';
+import 'toast.dart';
 
 class HttpUtils {
   static Dio dio;

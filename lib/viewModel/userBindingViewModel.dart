@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/model/common_model.dart';
+import '../model/common_model.dart';
 import '../services/request_service.dart';
 
 /**

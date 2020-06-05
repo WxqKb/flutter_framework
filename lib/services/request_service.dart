@@ -10,7 +10,7 @@ import 'dart:convert';
 import 'package:dio/src/form_data.dart';
 
 import '../config/api.dart';
-import './service_interface.dart';
+import 'service_interface.dart';
 import '../utils/http.dart';
 
 class RequestManagement implements NetWorkApi{
