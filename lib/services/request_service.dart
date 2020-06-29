@@ -7,22 +7,24 @@
 
 import 'dart:async';
 import 'dart:convert';
-import 'package:dio/src/form_data.dart';
 
 import '../config/api.dart';
 import 'service_interface.dart';
 import '../utils/http.dart';
 
 class RequestManagement implements NetWorkApi{
+  static RequestManagement _internal;
+
 //  工厂模式暴露一个对象
   factory RequestManagement() => _getInternal();
-  static RequestManagement _internal;
 
   static RequestManagement _getInternal(){
     if(_internal == null){
       _internal = new RequestManagement.internal();
     }
+    return _internal;
   }
+
   RequestManagement.internal();
 
   @override
