@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_app/utils/providers_util.dart';
 import 'package:provider/provider.dart';
@@ -20,6 +21,8 @@ void main() {
       FlutterError.dumpErrorToConsole(details);
       Zone.current.handleUncaughtError(details.exception, details.stack);
     };
+//  开启布局线
+    debugPaintSizeEnabled = !true;
     runApp(MyApp());
   }, onError: (Object obj, StackTrace stack) {
 //    上传错误日志

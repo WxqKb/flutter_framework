@@ -45,7 +45,14 @@ android {
         versionName flutterVersionName
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
-
+    signingConfigs {
+        release {
+            keyAlias 'andoird'
+            keyPassword 'wxq082410'
+            storeFile file('D:\\Karl\\Flutter_study\\project\\Basic-framework\\android.jks')
+            storePassword 'wxq082410'
+        }
+    }
     buildTypes {
         release {
             // TODO: Add your own signing config for the release build.

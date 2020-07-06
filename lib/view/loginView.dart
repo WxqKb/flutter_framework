@@ -35,7 +35,7 @@ class _LoginView extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
-    ScreenUtil.instance = ScreenUtil(width: 720, height: 1280)..init(context);
+    ScreenUtil.init(width: 720, height: 1280);
     var loginVM = Provider.of<LoginViewModel>(context);
     // TODO: implement build
     return Scaffold(
@@ -60,8 +60,8 @@ class _LoginView extends State<LoginPage> {
                       new Padding(
                         padding: EdgeInsets.fromLTRB(0, 30, 0, 20),
                         child: new Container(
-                            width: ScreenUtil().setWidth(650),
-                            height: ScreenUtil().setHeight(550),
+                            width: 650.w,
+                            height: 550.h,
                             decoration: new BoxDecoration(
                                 color: Colors.white,
                                 boxShadow: <BoxShadow>[
@@ -85,8 +85,8 @@ class _LoginView extends State<LoginPage> {
                                     top: -40,
                                     child: new Image.asset(
                                       'assets/img_login_logo.png',
-                                      width: ScreenUtil().setWidth(150),
-                                      height: ScreenUtil().setHeight(150),
+                                      width: 150.w,
+                                      height: 150.h,
                                     )),
                                 new Form(
                                     //设置globalKey，用于后面获取FormState
@@ -97,15 +97,23 @@ class _LoginView extends State<LoginPage> {
                                       new Padding(
                                           padding: EdgeInsets.only(top: 85),
                                           child: new Container(
-                                              height: ScreenUtil().setHeight(85),
-                                              width: ScreenUtil().setWidth(486),
+                                              height: 85.h,
+                                              width: 486.w,
                                               child: TextFormField(
                                                   controller: loginVM.userNameController,
                                                   decoration: InputDecoration(
                                                     hintText: "请输入用户名",
                                                     hintStyle:
-                                                        TextStyle(color: Colors.grey, fontSize: ScreenUtil().setSp(24)),
-                                                    icon: Icon(Icons.person),
+                                                        TextStyle(color: Colors.grey, fontSize: 24.sp),
+                                                    icon: Row(
+                                                      children: <Widget>[
+                                                        Column(
+                                                          children: <Widget>[
+                                                            Icon(Icons.person),
+                                                          ],
+                                                        ),
+                                                      ],
+                                                    ),
                                                   ),
                                                   validator: (value) {
                                                     return value.trim().length > 0 ? null : "必填选项";
@@ -113,15 +121,15 @@ class _LoginView extends State<LoginPage> {
                                       new Padding(
                                           padding: EdgeInsets.only(top: 25),
                                           child: new Container(
-                                              height: ScreenUtil().setHeight(85),
-                                              width: ScreenUtil().setWidth(486),
+                                              height:85.h,
+                                              width:486.w,
                                               child: TextFormField(
                                                   controller: loginVM.pwdController,
                                                   decoration: InputDecoration(
                                                     hintText: '你的登录密码',
                                                     hintStyle: TextStyle(
                                                       color: Colors.grey,
-                                                      fontSize: ScreenUtil().setSp(24),
+                                                      fontSize: 24.sp,
                                                     ),
                                                     icon: Icon(Icons.lock),
                                                   ),
@@ -143,7 +151,7 @@ class _LoginView extends State<LoginPage> {
                                         new Text('记住密码',
                                             style: new TextStyle(
                                                 color: loginVM.radioValue ? const Color(0xff00b4ed) : Colors.black,
-                                                fontSize: ScreenUtil().setSp(24)))
+                                                fontSize: 24.sp))
                                       ],
                                     ))
                               ],
@@ -152,8 +160,8 @@ class _LoginView extends State<LoginPage> {
                       new Padding(
                           padding: EdgeInsets.only(top: 40),
                           child: new Container(
-                            height: ScreenUtil().setHeight(90),
-                            width: ScreenUtil().setWidth(486),
+                            height: 90.h,
+                            width: 486.w,
                             child: new RaisedButton(
 //                              匿名函数或者普通函数都可以，但是无需()，否则会执行
                               onPressed: (){
@@ -163,7 +171,7 @@ class _LoginView extends State<LoginPage> {
                               shape: StadiumBorder(),
                               child: new Text(
                                 "登录",
-                                style: new TextStyle(color: Colors.white, fontSize: ScreenUtil().setSp(32)),
+                                style: new TextStyle(color: Colors.white, fontSize: 32.sp),
                               ),
                             ),
                           ))

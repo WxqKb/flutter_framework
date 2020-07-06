@@ -35,7 +35,7 @@ class _HomeView extends State<HomePage> with SingleTickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    ScreenUtil.instance = ScreenUtil(width: 750, height: 1334)..init(context);
+//    ScreenUtil.instance = ScreenUtil(width: 750, height: 1334)..init(context);
     homeVM = Provider.of<HomeViewModel>(context);
     // TODO: implement build
     return Scaffold(
@@ -114,7 +114,7 @@ class _HomeView extends State<HomePage> with SingleTickerProviderStateMixin {
                       image: new AssetImage('assets/drawer/ic_menu_selected.png'), fit: BoxFit.fill // 填满
                       ))
               : new BoxDecoration(),
-          height: ScreenUtil().setHeight(120),
+          height: 120.h,
           child: new Row(children: <Widget>[
             new Padding(padding: EdgeInsets.fromLTRB(30.0, 0.0, 0.0, 0.0)),
             new Image.asset(
