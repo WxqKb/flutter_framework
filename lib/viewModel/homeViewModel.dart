@@ -6,7 +6,7 @@
  **/
 
 import 'package:flutter/material.dart';
-import 'package:flutter_app/router/routers.dart';
+import '../router/routers.dart';
 import '../utils/shared_cache.dart';
 import '../utils/toast_util.dart';
 import '../model/common_model.dart';
@@ -19,5 +19,11 @@ class HomeViewModel extends ChangeNotifier {
     pageNum = i;
     notifyListeners();
     Navigator.pop(context);
+    switch(i){
+      case 5: {
+        Routers.pushName(context,'/blocDemo');
+        break;
+      }
+    }
   }
 }

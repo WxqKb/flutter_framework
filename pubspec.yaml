@@ -42,6 +42,7 @@ dependencies:
   flutter_swiper: ^1.1.6
   video_player: ^0.10.2+1
   web_socket_channel: ^1.1.0
+  flutter_bloc: ^4.0.0
 
 dev_dependencies:
   flutter_test:

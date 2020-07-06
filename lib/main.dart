@@ -6,7 +6,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_app/utils/providers_util.dart';
 import 'package:provider/provider.dart';
 
-import 'view/loginView.dart';
+import 'view/loginPage.dart';
 
 void main() {
   runZoned(() {
@@ -42,7 +42,7 @@ class MyApp extends StatelessWidget {
             title: 'Flutter Demo',
             theme: ThemeData(
               accentColor: Color(0xff00b4ed),
-              primaryColor: Color(0xff00b4ed), // 主题色
+              primaryColor: Color(0xffffffff), // 主题色
             ),
             // 相当于Vue中的beforeEnter路由拦截
 //            onGenerateRoute: (RouteSettings setting){

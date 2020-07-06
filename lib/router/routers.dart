@@ -6,16 +6,18 @@
  **/
 
 import 'package:flutter/material.dart';
+import 'package:flutter_app/view/blocPage_1.dart';
 import 'package:flutter_app/view/homePage.dart';
 
-import '../view/loginView.dart';
+import '../view/loginPage.dart';
 import '../view/homePage.dart';
 
 class Routers {
 //  所有页面路由静态Map
   static final Map<String, Function> router = {
     '/login': (BuildContext context, {Map argument}) => new LoginPage(arguments: argument),
-    '/home': (BuildContext context, {Map argument}) => new HomePage(arguments: argument)
+    '/home': (BuildContext context, {Map argument}) => new HomePage(arguments: argument),
+    '/blocDemo':(BuildContext context, {Map argument}) => new BlocPage_1()
   };
 
 //  进入页面通用方法
