@@ -67,7 +67,8 @@ class _HomeView extends State<HomePage> with SingleTickerProviderStateMixin {
               drawerUI(1, "高德地图", "assets/drawer/ic_todo_2.png", "assets/drawer/ic_todo.png"),
               drawerUI(2, "音频展示", "assets/drawer/ic_history_2.png", "assets/drawer/ic_history.png"),
               drawerUI(3, "动画实例", "assets/drawer/ic_notice_2.png", "assets/drawer/ic_notice.png"),
-              drawerUI(4, "个人信息", "assets/drawer/ic_my_2.png", "assets/drawer/ic_my.png")
+              drawerUI(4, "个人信息", "assets/drawer/ic_my_2.png", "assets/drawer/ic_my.png"),
+              drawerUI(5, "BLoC", "assets/drawer/ic_my_2.png", "assets/drawer/ic_my.png")
             ],
           ),
         ),

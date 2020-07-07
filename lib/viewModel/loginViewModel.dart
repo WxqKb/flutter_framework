@@ -5,7 +5,7 @@
  * @date : 2020-05-23 20:06
  **/
 import 'package:flutter/material.dart';
-import 'package:flutter_app/router/routers.dart';
+import '../router/routers.dart';
 import '../utils/shared_cache.dart';
 import '../utils/toast_util.dart';
 import '../model/common_model.dart';
@@ -37,7 +37,7 @@ class LoginViewModel extends ChangeNotifier{
             saveName(params['mobile']);
             savePassword(params['password']);
           }
-          Routers.pushName(context,'/home');
+          Routers.pushReplacement(context,'/home');
       } else {
         loading = false;
         ToastUtils.shortShort(m.msg);
@@ -48,6 +48,6 @@ class LoginViewModel extends ChangeNotifier{
         notifyListeners();
     });
 //    跳转页面
-    Routers.pushName(context,'/home');
+    Routers.pushReplacement(context,'/home');
   }
 }
