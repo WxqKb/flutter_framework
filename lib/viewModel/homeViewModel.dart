@@ -19,11 +19,17 @@ class HomeViewModel extends ChangeNotifier {
     pageNum = i;
     notifyListeners();
     Navigator.pop(context);
-    switch(i){
-      case 5: {
-        Routers.pushName(context,'/blocDemo');
-        break;
-      }
+    switch (i) {
+      case 3:
+        {
+          Routers.pushName(context, '/animation');
+          break;
+        }
+      case 5:
+        {
+          Routers.pushName(context, '/blocDemo');
+          break;
+        }
     }
   }
 }
