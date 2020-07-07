@@ -11,9 +11,11 @@ import 'package:provider/single_child_widget.dart';
 
 import '../viewModel/homeViewModel.dart';
 import '../viewModel/loginViewModel.dart';
+import '../viewModel/animationViewModel.dart';
 
 class ProviderUtil {
-  static ChangeNotifierProvider<T> _buildProvider<T extends ChangeNotifier>(T value) {
+  static ChangeNotifierProvider<T> _buildProvider<T extends ChangeNotifier>(
+      T value) {
     return ChangeNotifierProvider<T>(
       create: (_) => value,
     );
@@ -23,6 +25,7 @@ class ProviderUtil {
 
   static final _providers = [
     _buildProvider<LoginViewModel>(LoginViewModel()),
-    _buildProvider<HomeViewModel>(HomeViewModel())
+    _buildProvider<HomeViewModel>(HomeViewModel()),
+    _buildProvider<AnimationViewModel>(AnimationViewModel())
   ];
 }

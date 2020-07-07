@@ -32,7 +32,7 @@ class CommunicationUtil {
 //    5秒发送一次ping
     timerUtil = new TimerUtil(mInterval: 5000);
     timerUtil.setOnTimerTickCallback((int value) {
-      print("'-----:>ping");
+      print("-----:>ping");
       sendHandle('ping', '123');
       count++;
       if (count > 3) {
