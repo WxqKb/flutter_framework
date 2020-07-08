@@ -64,6 +64,7 @@ flutter:
   assets:
     - assets/img_login_bg.png
     - assets/img_login_logo.png
+    - assets/ic_girl.png
     - assets/drawer/
     - assets/animation/
 

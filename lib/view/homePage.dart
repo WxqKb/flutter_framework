@@ -42,7 +42,7 @@ class _HomeView extends State<HomePage> with SingleTickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    ScreenUtil.instance = ScreenUtil(width: 750, height: 1334)..init(context);
+    ScreenUtil.init(width: 720, height: 1280);
     homeVM = Provider.of<HomeViewModel>(context);
     // TODO: implement build
     return Scaffold(

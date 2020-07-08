@@ -25,7 +25,6 @@ class _BlocView extends State<BlocPage_1> {
 
   @override
   Widget build(BuildContext context) {
-    ScreenUtil.instance = ScreenUtil(width: 750, height: 1334)..init(context);
     // TODO: implement build
     return Scaffold(
       backgroundColor: const Color(0xfff7f7f7),

@@ -16,11 +16,13 @@ class CostomWidget extends StatefulWidget {
 }
 
 class _CostomView extends State<CostomWidget> with TickerProviderStateMixin {
+  GlobalKey _key = new GlobalKey();
   AnimationController _animationController;
   Animation _animation;
+  double mediaWidth, mediaHeight;
   double dx = 0.0, dy = 0.0;
 
-  Offset beforePinPosition = Offset(0, 0);
+  double distance_x, distance_y;
   Offset realPosition = Offset(0, 0);
 
 //  手势缩放倍数
@@ -32,53 +34,50 @@ class _CostomView extends State<CostomWidget> with TickerProviderStateMixin {
   void initState() {
     // TODO: implement initState
     super.initState();
-    _animationController =
-        AnimationController(duration: Duration(seconds: 2), vsync: this)
-          ..addListener(() {
-            print('123');
-          })
-          ..addStatusListener((status) {
-            print('123');
-          });
-
+    _animationController = AnimationController(duration: Duration(seconds: 2), vsync: this)
+      ..addListener(() {
+        print('123');
+      })
+      ..addStatusListener((status) {
+        print('123');
+      });
     _animation = Tween(begin: 0.0, end: 2.0 * pi).animate(_animationController);
   }
 
   @override
   Widget build(BuildContext context) {
+    mediaWidth = MediaQuery.of(context).size.width;
+    mediaHeight = MediaQuery.of(context).size.height;
     // TODO: implement build
     Widget current;
     current = ConstrainedBox(
         child: GestureDetector(
             onScaleStart: (details) {
-              print('开始缩放');
-              print(details);
-              beforePinPosition = details.localFocalPoint;
+              distance_x = details.localFocalPoint.dx - realPosition.dx;
+              distance_y = details.localFocalPoint.dy - realPosition.dy;
             },
             onScaleUpdate: (details) {
-              print('缩放更新');
-              print(details);
-              print(details.scale);
               setState(() {
                 scaleLevel = details.scale;
-                dx = details.localFocalPoint.dx;
-                dy = details.localFocalPoint.dy;
+                dx = details.localFocalPoint.dx - distance_x;
+                dy = details.localFocalPoint.dy - distance_y;
               });
             },
             onScaleEnd: (details) {
-              print('缩放结束');
-              print(details);
               initScale = initScale * scaleLevel;
+              realPosition = Offset(dx, dy);
+              RenderBox renderBox = _key.currentContext.findRenderObject();
+              if (initScale <= 1) {
+//                if (dx + renderBox.size.width > mediaWidth || dy + renderBox.size.height > mediaHeight) {
+//                  print('超出边界啦');
+//                }
+              }
             },
-            child: Stack(
-              children: <Widget>[
-                Transform(
-                    transform: Matrix4.translationValues(dx, dy, 0)
-                      ..scale(initScale * scaleLevel),
-//                      scale: initScale * scaleLevel,
-                    child: widget.child),
-//                ),
-              ],
+            child: Center(
+              child: Transform(
+                  key: _key,
+                  transform: Matrix4.translationValues(dx, dy, 0)..scale(initScale * scaleLevel),
+                  child: widget.child),
             )),
         constraints: new BoxConstraints.expand());
     return current;

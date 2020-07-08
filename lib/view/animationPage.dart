@@ -10,8 +10,7 @@ class AnimationPage extends StatefulWidget {
   _AnimationView createState() => new _AnimationView();
 }
 
-class _AnimationView extends State<AnimationPage>
-    with TickerProviderStateMixin {
+class _AnimationView extends State<AnimationPage> with TickerProviderStateMixin {
   List<String> imgList = [
     'assets/animation/ic_avatar_1.png',
     'assets/animation/ic_avatar_2.png',
@@ -20,9 +19,7 @@ class _AnimationView extends State<AnimationPage>
   ];
   List<String> textList = ['放大缩小', '圆形转圈', '加入购物车', 'Hero动画'];
   var animationVM;
-  AnimationController _animationController_01,
-      _animationController_02,
-      _animationController_03;
+  AnimationController _animationController_01, _animationController_02, _animationController_03;
   Animation _animation;
 
 // 购物车对应变量
@@ -38,18 +35,14 @@ class _AnimationView extends State<AnimationPage>
   void initState() {
     // TODO: implement initState
     super.initState();
-    _animationController_01 = AnimationController(
-        duration: Duration(seconds: 1),
-        lowerBound: 80.0,
-        upperBound: 110.0,
-        vsync: this);
+    _animationController_01 =
+        AnimationController(duration: Duration(seconds: 1), lowerBound: 80.0, upperBound: 110.0, vsync: this);
 
     _animationController_01.addListener(() {
       setState(() {});
     });
 //   由于圆形使用了Flutter提供的组件，因此只需要声明一个controller
-    _animationController_02 =
-        AnimationController(duration: Duration(seconds: 2), vsync: this);
+    _animationController_02 = AnimationController(duration: Duration(seconds: 2), vsync: this);
 
 //    _animation = Tween(begin: 0.0, end: 1.0).animate(CurvedAnimation(
 //        parent: _animationController_02,
@@ -64,8 +57,7 @@ class _AnimationView extends State<AnimationPage>
 //        }
 //      }));
 
-    _animationController_03 =
-        AnimationController(duration: Duration(seconds: 1), vsync: this);
+    _animationController_03 = AnimationController(duration: Duration(seconds: 1), vsync: this);
     _animation = Tween(begin: 0, end: 1.0).animate(_animationController_03)
       ..addListener(() {
         setState(() {});
@@ -82,7 +74,7 @@ class _AnimationView extends State<AnimationPage>
 
   @override
   Widget build(BuildContext context) {
-    ScreenUtil.instance = ScreenUtil(width: 750, height: 1334)..init(context);
+    ScreenUtil.init(width: 720, height: 1280);
     animationVM = Provider.of<AnimationViewModel>(context);
     // TODO: implement build
     return Scaffold(
@@ -146,7 +138,7 @@ class _AnimationView extends State<AnimationPage>
       case 1:
         {
           widget = GestureDetector(
-            onTap: () {
+            onDoubleTap: () {
               _animationController_02.forward();
             },
             child: Column(children: <Widget>[
@@ -168,11 +160,9 @@ class _AnimationView extends State<AnimationPage>
           widget = GestureDetector(
             onTap: () {
               RenderBox renderBox = _key.currentContext.findRenderObject();
-              var offset = renderBox.localToGlobal(Offset(
-                  renderBox.size.width * 0.5, renderBox.size.height * 0.5));
+              var offset = renderBox.localToGlobal(Offset(renderBox.size.width * 0.5, renderBox.size.height * 0.5));
               RenderBox carRender = _key_2.currentContext.findRenderObject();
-              var offset_2 = carRender.localToGlobal(Offset(
-                  carRender.size.width * 0.5, carRender.size.height * 0.5));
+              var offset_2 = carRender.localToGlobal(Offset(carRender.size.width * 0.5, carRender.size.height * 0.5));
               setState(() {
                 startOffset = offset;
                 endOffset = offset_2;
@@ -196,10 +186,7 @@ class _AnimationView extends State<AnimationPage>
         {
           widget = GestureDetector(
             onTap: () {
-              Navigator.push(
-                  context,
-                  new MaterialPageRoute(
-                      builder: (context) => new _Hero1Demo()));
+              Navigator.push(context, new MaterialPageRoute(builder: (context) => new _Hero1Demo()));
             },
             child: Column(children: <Widget>[
               Hero(

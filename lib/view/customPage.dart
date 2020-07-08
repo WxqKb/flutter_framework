@@ -15,7 +15,7 @@ class _CustomView extends State<CustomPage> {
         title: Text('自定义组件'),
       ),
       body: CostomWidget(
-        child: Image.asset('assets/animation/ic_avatar_4.png'),
+        child: Image.asset('assets/ic_girl.png'),
       ),
     );
   }

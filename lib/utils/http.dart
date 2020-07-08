@@ -54,6 +54,7 @@ class HttpUtils {
         return options;
       }, onResponse: (Response response) {
         print("响应拦截");
+        print(response);
         return response; // continue
       }));
 //      , onError: (DioError e) {
@@ -111,7 +112,7 @@ class HttpUtils {
   /// error统一处理
   static void _handError(Function errorCallback, DioError e) {
     if (e != null) {
-      print(" ------------- Error Msg ------------");
+      print(" ------------- Error Msg ------------"+e.toString());
       if (errorCallback != null) {
         errorCallback(e);
       }
