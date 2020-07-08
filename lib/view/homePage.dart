@@ -6,6 +6,7 @@
  **/
 
 import 'package:flutter/material.dart';
+import 'package:flutter_app/component/canvas.dart';
 import 'package:flutter_app/viewModel/homeViewModel.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
@@ -20,7 +21,13 @@ class HomePage extends StatefulWidget {
 
 class _HomeView extends State<HomePage> with SingleTickerProviderStateMixin {
   //  tabBar变量\
-  List<Tab> myTabs = <Tab>[Tab(text: "推荐"), Tab(text: "热榜"), Tab(text: "关注"), Tab(text: "开源推荐"), Tab(text: "面试资源")];
+  List<Tab> myTabs = <Tab>[
+    Tab(text: "推荐"),
+    Tab(text: "热榜"),
+    Tab(text: "关注"),
+    Tab(text: "开源推荐"),
+    Tab(text: "面试资源")
+  ];
   var homeVM;
   TabController mTabController;
   @override
@@ -35,7 +42,7 @@ class _HomeView extends State<HomePage> with SingleTickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-//    ScreenUtil.instance = ScreenUtil(width: 750, height: 1334)..init(context);
+    ScreenUtil.instance = ScreenUtil(width: 750, height: 1334)..init(context);
     homeVM = Provider.of<HomeViewModel>(context);
     // TODO: implement build
     return Scaffold(
@@ -47,28 +54,38 @@ class _HomeView extends State<HomePage> with SingleTickerProviderStateMixin {
             padding: EdgeInsets.zero,
             children: <Widget>[
               new Container(
-                padding: EdgeInsets.only(top: 64.5, bottom:40.0),
+                padding: EdgeInsets.only(top: 64.5, bottom: 40.0),
                 child: new Column(
                   children: <Widget>[
-                    new Image.asset("assets/drawer/ic_title.png", width: 89.0, height: 89.0),
+                    new Image.asset("assets/drawer/ic_title.png",
+                        width: 89.0, height: 89.0),
                     new Padding(padding: EdgeInsets.only(top: 10.0)),
                     new Text(
                       'Karl',
-                      style: new TextStyle(fontWeight: FontWeight.w700, color: const Color(0xff111111), fontSize: 16),
+                      style: new TextStyle(
+                          fontWeight: FontWeight.w700,
+                          color: const Color(0xff111111),
+                          fontSize: 16),
                     ),
                     new Padding(padding: EdgeInsets.only(top: 8.0)),
                     new Text(
                       '13400000000',
-                      style: new TextStyle(color: const Color(0x9f111111), fontSize: 16),
+                      style: new TextStyle(
+                          color: const Color(0x9f111111), fontSize: 16),
                     ),
                   ],
                 ),
               ),
-              drawerUI(1, "高德地图", "assets/drawer/ic_todo_2.png", "assets/drawer/ic_todo.png"),
-              drawerUI(2, "音频展示", "assets/drawer/ic_history_2.png", "assets/drawer/ic_history.png"),
-              drawerUI(3, "动画实例", "assets/drawer/ic_notice_2.png", "assets/drawer/ic_notice.png"),
-              drawerUI(4, "个人信息", "assets/drawer/ic_my_2.png", "assets/drawer/ic_my.png"),
-              drawerUI(5, "BLoC", "assets/drawer/ic_my_2.png", "assets/drawer/ic_my.png")
+              drawerUI(1, "高德地图", "assets/drawer/ic_todo_2.png",
+                  "assets/drawer/ic_todo.png"),
+              drawerUI(2, "音频展示", "assets/drawer/ic_history_2.png",
+                  "assets/drawer/ic_history.png"),
+              drawerUI(3, "动画实例", "assets/drawer/ic_notice_2.png",
+                  "assets/drawer/ic_notice.png"),
+              drawerUI(4, "自定义控件", "assets/drawer/ic_my_2.png",
+                  "assets/drawer/ic_my.png"),
+              drawerUI(5, "BLoC", "assets/drawer/ic_my_2.png",
+                  "assets/drawer/ic_my.png")
             ],
           ),
         ),
@@ -93,7 +110,9 @@ class _HomeView extends State<HomePage> with SingleTickerProviderStateMixin {
         body: TabBarView(
           controller: mTabController,
           children: <Widget>[
-            Center(child: Text("这是推荐的内容")),
+            CostomWidget(
+              child: Image.asset('assets/animation/ic_avatar_4.png'),
+            ),
             Center(child: Text("这是热榜的内容")),
             Center(child: Text("这是关注的内容")),
             Center(child: Text("这是开源推荐的内容")),
@@ -112,7 +131,9 @@ class _HomeView extends State<HomePage> with SingleTickerProviderStateMixin {
           decoration: homeVM.pageNum == i
               ? new BoxDecoration(
                   image: new DecorationImage(
-                      image: new AssetImage('assets/drawer/ic_menu_selected.png'), fit: BoxFit.fill // 填满
+                      image:
+                          new AssetImage('assets/drawer/ic_menu_selected.png'),
+                      fit: BoxFit.fill // 填满
                       ))
               : new BoxDecoration(),
           height: 120.h,
@@ -128,7 +149,9 @@ class _HomeView extends State<HomePage> with SingleTickerProviderStateMixin {
               title,
               style: new TextStyle(
                   fontWeight: homeVM.pageNum == i ? FontWeight.w900 : null,
-                  color: homeVM.pageNum == i ? const Color(0xff014282) : const Color(0xff333333),
+                  color: homeVM.pageNum == i
+                      ? const Color(0xff014282)
+                      : const Color(0xff333333),
                   fontSize: 16.0),
             )
           ]),

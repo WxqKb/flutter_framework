@@ -4,6 +4,7 @@ CountBLoC bLoC = new CountBLoC();
 
 class CountBLoC {
   int _count = 0;
+//  广播
   var _countController = StreamController<int>.broadcast();
 
   Stream<int> get stream => _countController.stream;
