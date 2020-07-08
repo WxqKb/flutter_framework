@@ -25,6 +25,10 @@ class HomeViewModel extends ChangeNotifier {
           Routers.pushName(context, '/animation');
           break;
         }
+      case 4:{
+        Routers.pushName(context, '/custom');
+        break;
+      }
       case 5:
         {
           Routers.pushName(context, '/blocDemo');

@@ -76,7 +76,8 @@ class _LoginView extends State<LoginPage> {
                                     blurRadius: 20.0,
                                   ),
                                 ],
-                                borderRadius: BorderRadius.all(Radius.circular(15.0))),
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(15.0))),
                             child: new Stack(
                               alignment: AlignmentDirectional.topCenter,
                               overflow: Overflow.visible,
@@ -97,39 +98,48 @@ class _LoginView extends State<LoginPage> {
                                       new Padding(
                                           padding: EdgeInsets.only(top: 85),
                                           child: new Container(
-                                              height: ScreenUtil().setHeight(85),
+                                              height:
+                                                  ScreenUtil().setHeight(85),
                                               width: ScreenUtil().setWidth(486),
                                               child: TextFormField(
-                                                  controller: loginVM.userNameController,
+                                                  controller: loginVM
+                                                      .userNameController,
                                                   decoration: InputDecoration(
                                                     hintText: "请输入用户名",
-                                                    hintStyle:
-                                                        TextStyle(color: Colors.grey, fontSize: ScreenUtil().setSp(24)),
+                                                    hintStyle: TextStyle(
+                                                        color: Colors.grey,
+                                                        fontSize: ScreenUtil()
+                                                            .setSp(24)),
                                                     icon: Icon(Icons.person),
                                                   ),
                                                   validator: (value) {
-                                                    return value.trim().length > 0 ? null : "必填选项";
+                                                    return value.trim().length >
+                                                            0
+                                                        ? null
+                                                        : "必填选项";
                                                   }))),
-                                      new Padding(
-                                          padding: EdgeInsets.only(top: 25),
-                                          child: new Container(
-                                              height: ScreenUtil().setHeight(85),
-                                              width: ScreenUtil().setWidth(486),
-                                              child: TextFormField(
-                                                  controller: loginVM.pwdController,
-                                                  decoration: InputDecoration(
-                                                    hintText: '你的登录密码',
-                                                    hintStyle: TextStyle(
-                                                      color: Colors.grey,
-                                                      fontSize: ScreenUtil().setSp(24),
-                                                    ),
-                                                    icon: Icon(Icons.lock),
-                                                  ),
-                                                  //是否是密码
-                                                  obscureText: true,
-                                                  validator: (value) {
-                                                    return value.length > 0 ? null : '必填选项';
-                                                  })))
+                                      new Container(
+                                          margin: EdgeInsets.only(top: 25),
+                                          height: ScreenUtil().setHeight(85),
+                                          width: ScreenUtil().setWidth(486),
+                                          child: TextFormField(
+                                              controller: loginVM.pwdController,
+                                              decoration: InputDecoration(
+                                                hintText: '你的登录密码',
+                                                hintStyle: TextStyle(
+                                                  color: Colors.grey,
+                                                  fontSize:
+                                                      ScreenUtil().setSp(24),
+                                                ),
+                                                icon: Icon(Icons.lock),
+                                              ),
+                                              //是否是密码
+                                              obscureText: true,
+                                              validator: (value) {
+                                                return value.length > 0
+                                                    ? null
+                                                    : '必填选项';
+                                              }))
                                     ])),
                                 new Positioned(
                                     bottom: 8,
@@ -138,12 +148,16 @@ class _LoginView extends State<LoginPage> {
                                       children: <Widget>[
                                         new Checkbox(
                                           value: loginVM.radioValue,
-                                          onChanged: (val) => loginVM.changeRadio(),
+                                          onChanged: (val) =>
+                                              loginVM.changeRadio(),
                                         ),
                                         new Text('记住密码',
                                             style: new TextStyle(
-                                                color: loginVM.radioValue ? const Color(0xff00b4ed) : Colors.black,
-                                                fontSize: ScreenUtil().setSp(24)))
+                                                color: loginVM.radioValue
+                                                    ? const Color(0xff00b4ed)
+                                                    : Colors.black,
+                                                fontSize:
+                                                    ScreenUtil().setSp(24)))
                                       ],
                                     ))
                               ],
@@ -156,14 +170,16 @@ class _LoginView extends State<LoginPage> {
                             width: ScreenUtil().setWidth(486),
                             child: new RaisedButton(
 //                              匿名函数或者普通函数都可以，但是无需()，否则会执行
-                              onPressed: (){
+                              onPressed: () {
                                 loginVM.loginHandel(context);
                               },
                               color: const Color(0xff00b4ed),
                               shape: StadiumBorder(),
                               child: new Text(
                                 "登录",
-                                style: new TextStyle(color: Colors.white, fontSize: ScreenUtil().setSp(32)),
+                                style: new TextStyle(
+                                    color: Colors.white,
+                                    fontSize: ScreenUtil().setSp(32)),
                               ),
                             ),
                           ))
