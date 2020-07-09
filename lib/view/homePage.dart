@@ -110,9 +110,10 @@ class _HomeView extends State<HomePage> with SingleTickerProviderStateMixin {
         body: TabBarView(
           controller: mTabController,
           children: <Widget>[
-            CostomWidget(
-              child: Image.asset('assets/animation/ic_avatar_4.png'),
-            ),
+//            CostomWidget(
+//              child: Image.asset('assets/animation/ic_avatar_4.png'),
+//            ),
+            Center(child: Text("这是首页的内容")),
             Center(child: Text("这是热榜的内容")),
             Center(child: Text("这是关注的内容")),
             Center(child: Text("这是开源推荐的内容")),
