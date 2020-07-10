@@ -28,9 +28,8 @@ class ZoomBoxView extends State<ZoomBox> with TickerProviderStateMixin {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
-    Stream<int> stream = widget.controller.stream;
+    Stream<int> stream = widget.controller?.stream;
     stream.listen((event) {
       _animationScale(1.0);
       _animationOffset(Offset.zero);
@@ -39,7 +38,6 @@ class ZoomBoxView extends State<ZoomBox> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     return Center(
       child: Container(
           width: widget.width == null ? double.infinity : widget.width,
@@ -107,7 +105,6 @@ class ZoomBoxView extends State<ZoomBox> with TickerProviderStateMixin {
       double distanceY = targetOffsetY +
           renderBox.size.height * realScale -
           (widget.height == null ? MediaQuery.of(context).size.height : widget.height);
-      print('Y>>>' + distanceY.toString());
       if (targetOffsetX > 0) {
         targetOffsetX = 0;
       }
