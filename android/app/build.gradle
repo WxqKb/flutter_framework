@@ -49,7 +49,7 @@ android {
         release {
             keyAlias 'andoird'
             keyPassword 'wxq082410'
-            storeFile file('D:\\Karl\\Flutter_study\\project\\Basic-framework\\android.jks')
+            storeFile file('/Users/wecuttznine/Desktop/testPro/basic-framework/android.jks')
             storePassword 'wxq082410'
         }
     }
