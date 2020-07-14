@@ -2,6 +2,7 @@ import 'dart:math';
 import 'dart:async';
 import 'package:flutter/material.dart';
 
+/// 已弃用
 class CostomWidget extends StatefulWidget {
   @required
   Widget child;

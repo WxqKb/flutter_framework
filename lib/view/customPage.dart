@@ -1,8 +1,9 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_app/component/canvas.dart';
-import 'package:flutter_app/component/zoom_box.dart';
+
+import 'package:zoombox/zoom_box_demo.dart';
+import 'package:zoombox/zoom_controller.dart';
 
 class CustomPage extends StatefulWidget {
   @override
@@ -10,7 +11,7 @@ class CustomPage extends StatefulWidget {
 }
 
 class _CustomView extends State<CustomPage> {
-  StreamController<int> controller = new StreamController<int>();
+  ZoomController controller = new ZoomController();
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
@@ -18,7 +19,7 @@ class _CustomView extends State<CustomPage> {
       appBar: AppBar(
         title: Text('自定义组件'),
       ),
-      body: ZoomBox(
+      body: ZoomBoxDemo(
         child: Image.asset('assets/ic_girl.png'),
         width: 350,
         height: 520,
@@ -26,7 +27,7 @@ class _CustomView extends State<CustomPage> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          controller.sink.add(1);
+          controller.fireEvent();
         },
         child: Icon(Icons.refresh),
       ),
@@ -37,6 +38,6 @@ class _CustomView extends State<CustomPage> {
   void dispose() {
     // TODO: implement dispose
     super.dispose();
-    controller.close();
+    controller.closed();
   }
 }
