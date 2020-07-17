@@ -67,8 +67,8 @@ class _CostomView extends State<CostomWidget> with TickerProviderStateMixin {
 //  手势进行事件
   _scaleUpdateHandle(ScaleUpdateDetails details) {
     setState(() {
-      dx = details.localFocalPoint.dx - distanceX * details.scale;
-      dy = details.localFocalPoint.dy - distanceY * details.scale;
+      dx = details.localFocalPoint.dx - distanceX * details.scale * initScale;
+      dy = details.localFocalPoint.dy - distanceY * details.scale * initScale;
       scaleLevel = details.scale;
     });
   }
@@ -79,8 +79,7 @@ class _CostomView extends State<CostomWidget> with TickerProviderStateMixin {
     initScale = initScale * scaleLevel;
     scaleLevel = 1.0;
 //    被缩小或者有偏移才需要恢复
-    if (initScale < 1.0 ||
-        initScale == 1.0 && (dx != realPosition.dy || dy != realPosition.dy)) {
+    if (initScale < 1.0 || initScale == 1.0 && (dx != realPosition.dy || dy != realPosition.dy)) {
 //    记录init动画前的偏移量和缩放倍数
       _scaleMin();
     } else if (initScale > maxScale) {
@@ -100,22 +99,21 @@ class _CostomView extends State<CostomWidget> with TickerProviderStateMixin {
     double animationY = dy;
     double animationScale = 1 - initScale;
     double scale = initScale;
-    _animationController =
-        AnimationController(duration: Duration(milliseconds: 500), vsync: this)
-          ..addListener(() {
-            if (_animation.value != 1.0) {
-              setState(() {
-                dx = animationX * _animation.value;
-                dy = animationY * _animation.value;
-                initScale = scale + animationScale * (1 - _animation.value);
-              });
-            }
-          })
-          ..addStatusListener((status) {
-            if (status == AnimationStatus.completed) {
-              _animationController.reset();
-            }
+    _animationController = AnimationController(duration: Duration(milliseconds: 500), vsync: this)
+      ..addListener(() {
+        if (_animation.value != 1.0) {
+          setState(() {
+            dx = animationX * _animation.value;
+            dy = animationY * _animation.value;
+            initScale = scale + animationScale * (1 - _animation.value);
           });
+        }
+      })
+      ..addStatusListener((status) {
+        if (status == AnimationStatus.completed) {
+          _animationController.reset();
+        }
+      });
     _animation = Tween(begin: 1.0, end: 0.0).animate(_animationController);
     _animationController.forward();
     realPosition = Offset(0, 0);
@@ -125,31 +123,27 @@ class _CostomView extends State<CostomWidget> with TickerProviderStateMixin {
     realPosition = Offset(dx, dy);
     double animationScale = initScale;
 
-    _animationScaleController =
-        AnimationController(duration: Duration(milliseconds: 500), vsync: this)
-          ..addListener(() {
-            if (_animationScale.value != animationScale) {
-              Offset offset = checkXY(
-                  realPosition.dx * _animationScale.value / animationScale,
-                  realPosition.dy * _animationScale.value / animationScale,
-                  _animationScale.value);
-              setState(() {
-                initScale = _animationScale.value;
-                dx = offset.dx;
-                dy = offset.dy;
-              });
-            }
-          })
-          ..addStatusListener((status) {
-            if (status == AnimationStatus.completed) {
-              _animationScaleController.reset();
-              scaleLevel = 1.0;
-              initScale = maxScale;
-              realPosition = Offset(dx, dy);
-            }
+    _animationScaleController = AnimationController(duration: Duration(milliseconds: 500), vsync: this)
+      ..addListener(() {
+        if (_animationScale.value != animationScale) {
+          Offset offset = checkXY(realPosition.dx * _animationScale.value / animationScale,
+              realPosition.dy * _animationScale.value / animationScale, _animationScale.value);
+          setState(() {
+            initScale = _animationScale.value;
+            dx = offset.dx;
+            dy = offset.dy;
           });
-    _animationScale = Tween(begin: initScale, end: maxScale)
-        .animate(_animationScaleController);
+        }
+      })
+      ..addStatusListener((status) {
+        if (status == AnimationStatus.completed) {
+          _animationScaleController.reset();
+          scaleLevel = 1.0;
+          initScale = maxScale;
+          realPosition = Offset(dx, dy);
+        }
+      });
+    _animationScale = Tween(begin: initScale, end: maxScale).animate(_animationScaleController);
     _animationScaleController.forward();
   }
 

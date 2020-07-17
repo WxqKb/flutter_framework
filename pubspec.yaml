@@ -45,6 +45,7 @@ dependencies:
   flutter_bloc: ^4.0.0
   zoombox:
     path: zoom_pub
+  pinch_zoom_image: "^0.2.5"
 
 dev_dependencies:
   flutter_test:
