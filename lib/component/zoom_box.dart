@@ -20,7 +20,7 @@ class ZoomBoxView extends State<ZoomBox> with TickerProviderStateMixin {
   AnimationController _animationOffsetController, _animationScaleController;
 
   double dx = 0.0, dy = 0.0; // child真正偏移值
-  double maxScale = 2; // child最大缩放变量
+  double maxScale = 4.0; // child最大缩放变量
   double _currentScale = 1.0; //  child当前缩放倍数
 
 //  ScaleUpdateDetails _latestScaleUpdateDetails; // 上次缩放变化数据
@@ -31,7 +31,7 @@ class ZoomBoxView extends State<ZoomBox> with TickerProviderStateMixin {
   void initState() {
     super.initState();
     Stream<int> stream = widget.controller?.stream;
-    stream.listen((event) {
+    stream.listen((event) {https://github.com/shichaohui/gesture_zoom_box.git
       _animationScale(1.0);
       _animationOffset(Offset.zero);
     });
