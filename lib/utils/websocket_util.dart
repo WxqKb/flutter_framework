@@ -1,13 +1,4 @@
-/**
- * File : websocket_util
- * tips : 封装webSocket
- * @author : karl.wei
- * @date : 2020-06-27 11:43
- **/
-import 'dart:io';
-
 import 'package:flutter/foundation.dart';
-import 'package:flutter_app/config/api.dart';
 import 'package:web_socket_channel/io.dart';
 
 var sockets = new WebSocketUtil();
@@ -25,9 +16,9 @@ class WebSocketUtil {
   }
 
 //  初始化webSocket
-  void initWebSocket() {
+  void initWebSocket(String wsUrl) {
     closed();
-    _channel = IOWebSocketChannel.connect(Api.WS_URL);
+    _channel = IOWebSocketChannel.connect(wsUrl);
     _channel.stream.listen(receptionMessage, onError: _onError, onDone: _onDone);
   }
 
@@ -95,8 +86,5 @@ class WebSocketUtil {
 //  webSocket done
   _onDone() {
     print(" ------- done -------");
-//    _webSocketListeners.forEach((Function callback) {
-//      callback("done");
-//    });
   }
 }
