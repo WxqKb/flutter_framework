@@ -8,7 +8,7 @@ import 'package:flutter_framework/router/router_config.dart';
 ///
 
 class NavigatorUtils {
-  static List<String> accessRoutes = ['/composition/aiComment'];
+  static List<String> accessRoutes = [''];
 
   //不需要页面返回值的跳转
   static push(BuildContext context, String path, {bool replace = false, bool clearStack = false}) async {

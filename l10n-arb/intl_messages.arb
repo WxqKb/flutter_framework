@@ -1,0 +1,14 @@
+{
+  "@@last_modified": "2021-01-22T01:07:21.116045",
+  "title": "Flutter APP",
+  "@title": {
+    "description": "Title for the Demo application",
+    "type": "text",
+    "placeholders": {}
+  },
+  "pressAgainToClose": "Press the back key again to close the app",
+  "@pressAgainToClose": {
+    "type": "text",
+    "placeholders": {}
+  }
+}

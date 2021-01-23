@@ -15,11 +15,11 @@ import 'package:provider/provider.dart';
 import 'l10n/localization_intl.dart';
 
 void main() {
+  runApp(MyApp());
   if (Platform.isAndroid) {
     SystemUiOverlayStyle systemUiOverlayStyle = SystemUiOverlayStyle(statusBarColor: Colors.transparent);
     SystemChrome.setSystemUIOverlayStyle(systemUiOverlayStyle);
   }
-  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {

@@ -1,0 +1,14 @@
+{
+  "@@last_modified": "2021-01-09T17:49:49.683192",
+  "title": "Flutter架构",
+  "@title": {
+    "description": "Title for the Demo application",
+    "type": "text",
+    "placeholders": {}
+  },
+  "pressAgainToClose": "再按一次返回桌面",
+  "@pressAgainToClose": {
+    "type": "text",
+    "placeholders": {}
+  }
+}
