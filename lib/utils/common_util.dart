@@ -32,7 +32,7 @@ class CommonUtils {
   }
 
   /// 显示加载框
-  static void showLoading(context, [String text, Function callBack]) {
+  static void showLoading(context, [String? text, Function? callBack]) {
     text = text ?? "正在加载中...";
     showDialog(
       barrierDismissible: false,
@@ -41,7 +41,7 @@ class CommonUtils {
         return WillPopScope(
           onWillPop: () {
             return null;
-          },
+          } as Future<bool> Function()?,
           child: Center(
             child: Container(
               decoration: BoxDecoration(
@@ -73,7 +73,7 @@ class CommonUtils {
                   Padding(
                     padding: const EdgeInsets.only(top: 20.0),
                     child: Text(
-                      text,
+                      text!,
                       style: Theme.of(context).textTheme.bodyText2,
                     ),
                   ),

@@ -6,7 +6,7 @@ class ProviderUtil {
     return ChangeNotifierProvider<T>(create: (_) => value);
   }
 
-  static List<ChangeNotifierProvider> get providersUtil => _providers;
+  static List<ChangeNotifierProvider> get providersUtil => _providers as List<ChangeNotifierProvider<ChangeNotifier>>;
 
   static final _providers = [];
 }

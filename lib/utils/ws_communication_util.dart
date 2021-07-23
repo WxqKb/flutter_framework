@@ -5,9 +5,9 @@ import 'package:flutter_framework/config/apis.dart';
 import 'package:flutter_framework/utils/websocket_util.dart';
 
 class WsCommunicationUtil {
-  static WsCommunicationUtil _wsCommunication;
+  static WsCommunicationUtil? _wsCommunication;
   int _count = 0;
-  TimerUtil timerUtil;
+  late TimerUtil timerUtil;
 
   ///  初始化时启动webSocket连接
   WsCommunicationUtil._internal() {
@@ -20,7 +20,7 @@ class WsCommunicationUtil {
     if (_wsCommunication == null) {
       _wsCommunication = WsCommunicationUtil._internal();
     }
-    return _wsCommunication;
+    return _wsCommunication!;
   }
 
   initTimer() {

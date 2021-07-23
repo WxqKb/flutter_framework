@@ -8,7 +8,7 @@ class Routes {
   static String animation = "/drawer/animation";
 
   static void configureRoutes(FluroRouter router) {
-    router.notFoundHandler = Handler(handlerFunc: (BuildContext context, Map<String, List<String>> params) {
+    router.notFoundHandler = Handler(handlerFunc: (BuildContext? context, Map<String, List<String>> params) {
       return Scaffold(
         body: Center(
           child: Text('ROUTE WAS NOT FOUND !!!'),

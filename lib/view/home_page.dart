@@ -12,7 +12,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   int _lastPressBackKeyTime = 0;
 
-  PageController _pageController;
+  late PageController _pageController;
   int _page = 0;
 
   @override
@@ -38,18 +38,21 @@ class _HomePageState extends State<HomePage> {
           preferredSize: Size.fromHeight(0.0),
           child: AppBar(),
         ),
-        body: PageView(controller: _pageController, physics: NeverScrollableScrollPhysics(), children: <Widget>[
-          MainPage(),
-          Center(
-            child: Text('展示canvas画布样例'),
-          ),
-          Center(
-            child: Text('调用微信开放平台能力'),
-          ),
-          Center(
-            child: Text('我的界面'),
-          ),
-        ]),
+        body: PageView(
+            controller: _pageController,
+            physics: NeverScrollableScrollPhysics(),
+            children: <Widget>[
+              MainPage(),
+              Center(
+                child: Text('展示canvas画布样例'),
+              ),
+              Center(
+                child: Text('调用微信开放平台能力'),
+              ),
+              Center(
+                child: Text('我的界面'),
+              ),
+            ]),
         floatingActionButton: FloatingActionButton(
           onPressed: () {},
           elevation: 0,
@@ -68,122 +71,133 @@ class _HomePageState extends State<HomePage> {
               border: Border(
                 top: BorderSide(
                   width: 0.5,
-                  color: MediaQuery.of(context).platformBrightness == Brightness.light ? Color(0xFFEAF4F6) : Color(0xFF313131),
+                  color: MediaQuery.of(context).platformBrightness ==
+                          Brightness.light
+                      ? Color(0xFFEAF4F6)
+                      : Color(0xFF313131),
                 ),
               ),
             ),
-            child: Row(mainAxisSize: MainAxisSize.max, mainAxisAlignment: MainAxisAlignment.spaceAround, children: <Widget>[
-              GestureDetector(
-                behavior: HitTestBehavior.opaque,
-                onTap: () {
-                  _onNavigateButtonTap(0);
-                  FocusScope.of(context).requestFocus(FocusNode());
-                },
-                child: Container(
-                  width: buttonWidth,
-                  alignment: Alignment.center,
-                  child: Stack(
-                    alignment: Alignment.topCenter,
-                    children: <Widget>[
-                      Icon(Icons.home, size: 26.0, color: _getColor(0)),
-                      Padding(
-                        padding: EdgeInsets.only(top: 26.0),
-                        child: Text(
-                          '首页',
-                          style: TextStyle(fontSize: 10.0, color: _getColor(0)),
-                        ),
+            child: Row(
+                mainAxisSize: MainAxisSize.max,
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: <Widget>[
+                  GestureDetector(
+                    behavior: HitTestBehavior.opaque,
+                    onTap: () {
+                      _onNavigateButtonTap(0);
+                      FocusScope.of(context).requestFocus(FocusNode());
+                    },
+                    child: Container(
+                      width: buttonWidth,
+                      alignment: Alignment.center,
+                      child: Stack(
+                        alignment: Alignment.topCenter,
+                        children: <Widget>[
+                          Icon(Icons.home, size: 26.0, color: _getColor(0)),
+                          Padding(
+                            padding: EdgeInsets.only(top: 26.0),
+                            child: Text(
+                              '首页',
+                              style: TextStyle(
+                                  fontSize: 10.0, color: _getColor(0)),
+                            ),
+                          ),
+                        ],
                       ),
-                    ],
+                    ),
                   ),
-                ),
-              ),
-              GestureDetector(
-                behavior: HitTestBehavior.opaque,
-                onTap: () {
-                  _onNavigateButtonTap(1);
-                  FocusScope.of(context).requestFocus(FocusNode());
-                },
-                child: Container(
-                  width: buttonWidth,
-                  alignment: Alignment.center,
-                  child: Stack(
-                    alignment: Alignment.topCenter,
-                    children: <Widget>[
-                      Icon(Icons.margin, size: 26.0, color: _getColor(1)),
-                      Padding(
-                        padding: EdgeInsets.only(top: 26.0),
-                        child: Text(
-                          '画布',
-                          style: TextStyle(fontSize: 10.0, color: _getColor(1)),
-                        ),
+                  GestureDetector(
+                    behavior: HitTestBehavior.opaque,
+                    onTap: () {
+                      _onNavigateButtonTap(1);
+                      FocusScope.of(context).requestFocus(FocusNode());
+                    },
+                    child: Container(
+                      width: buttonWidth,
+                      alignment: Alignment.center,
+                      child: Stack(
+                        alignment: Alignment.topCenter,
+                        children: <Widget>[
+                          Icon(Icons.margin, size: 26.0, color: _getColor(1)),
+                          Padding(
+                            padding: EdgeInsets.only(top: 26.0),
+                            child: Text(
+                              '画布',
+                              style: TextStyle(
+                                  fontSize: 10.0, color: _getColor(1)),
+                            ),
+                          ),
+                        ],
                       ),
-                    ],
+                    ),
                   ),
-                ),
-              ),
-              SizedBox(width: 88),
-              GestureDetector(
-                behavior: HitTestBehavior.opaque,
-                onTap: () {
-                  _onNavigateButtonTap(2);
-                  FocusScope.of(context).requestFocus(FocusNode());
-                },
-                child: Container(
-                  width: buttonWidth,
-                  alignment: Alignment.center,
-                  child: Stack(
-                    alignment: Alignment.topCenter,
-                    children: <Widget>[
-                      Icon(Icons.camera, size: 26.0, color: _getColor(2)),
-                      Padding(
-                        padding: EdgeInsets.only(top: 26.0),
-                        child: Text(
-                          '微信',
-                          style: TextStyle(fontSize: 10.0, color: _getColor(2)),
-                        ),
+                  SizedBox(width: 88),
+                  GestureDetector(
+                    behavior: HitTestBehavior.opaque,
+                    onTap: () {
+                      _onNavigateButtonTap(2);
+                      FocusScope.of(context).requestFocus(FocusNode());
+                    },
+                    child: Container(
+                      width: buttonWidth,
+                      alignment: Alignment.center,
+                      child: Stack(
+                        alignment: Alignment.topCenter,
+                        children: <Widget>[
+                          Icon(Icons.camera, size: 26.0, color: _getColor(2)),
+                          Padding(
+                            padding: EdgeInsets.only(top: 26.0),
+                            child: Text(
+                              '微信',
+                              style: TextStyle(
+                                  fontSize: 10.0, color: _getColor(2)),
+                            ),
+                          ),
+                        ],
                       ),
-                    ],
+                    ),
                   ),
-                ),
-              ),
-              GestureDetector(
-                behavior: HitTestBehavior.opaque,
-                onTap: () {
-                  _onNavigateButtonTap(3);
-                  FocusScope.of(context).requestFocus(FocusNode());
-                },
-                child: Container(
-                  width: buttonWidth,
-                  alignment: Alignment.center,
-                  child: Stack(
-                    alignment: Alignment.topCenter,
-                    children: <Widget>[
-                      Icon(Icons.person, size: 26.0, color: _getColor(3)),
-                      Padding(
-                        padding: EdgeInsets.only(top: 26.0),
-                        child: Text(
-                          '我的',
-                          style: TextStyle(fontSize: 10.0, color: _getColor(3)),
-                        ),
+                  GestureDetector(
+                    behavior: HitTestBehavior.opaque,
+                    onTap: () {
+                      _onNavigateButtonTap(3);
+                      FocusScope.of(context).requestFocus(FocusNode());
+                    },
+                    child: Container(
+                      width: buttonWidth,
+                      alignment: Alignment.center,
+                      child: Stack(
+                        alignment: Alignment.topCenter,
+                        children: <Widget>[
+                          Icon(Icons.person, size: 26.0, color: _getColor(3)),
+                          Padding(
+                            padding: EdgeInsets.only(top: 26.0),
+                            child: Text(
+                              '我的',
+                              style: TextStyle(
+                                  fontSize: 10.0, color: _getColor(3)),
+                            ),
+                          ),
+                        ],
                       ),
-                    ],
+                    ),
                   ),
-                ),
-              ),
-            ]),
+                ]),
           ),
         ),
       ),
-      onWillPop: () {
+      onWillPop: () async {
         int newTime = DateTime.now().millisecondsSinceEpoch;
         int result = newTime - _lastPressBackKeyTime;
         _lastPressBackKeyTime = newTime;
         if (result > 2000) {
-          CommonUtils.showToast(AppLocalizations.of(context).pressAgainToClose);
+          CommonUtils.showToast(
+              AppLocalizations.of(context)!.pressAgainToClose);
         } else {
           SystemNavigator.pop();
         }
-        return null;
+        return false;
       },
     );
   }

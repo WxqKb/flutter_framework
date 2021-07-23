@@ -10,9 +10,9 @@ class MainPage extends StatefulWidget {
 class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin {
   //  tabBar变量
   List<Tab> myTabs = <Tab>[Tab(text: "推荐"), Tab(text: "热榜"), Tab(text: "关注"), Tab(text: "开源推荐"), Tab(text: "面试资源")];
-  TabController mTabController;
+  TabController? mTabController;
 
-  int pageNum;
+  int? pageNum;
 
   @override
   void initState() {

@@ -7,10 +7,8 @@ import 'package:flutter_framework/router/router_config.dart';
 import 'package:flutter_framework/router/routes.dart';
 import 'package:flutter_framework/theme/theme_dark.dart';
 import 'package:flutter_framework/theme/theme_light.dart';
-import 'package:flutter_framework/utils/provider_util.dart';
 import 'package:flutter_framework/view/login_page.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:provider/provider.dart';
 
 import 'l10n/localization_intl.dart';
 
@@ -32,7 +30,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      builder: (context, child) => MediaQuery(data: MediaQuery.of(context).copyWith(alwaysUse24HourFormat: true), child: child),
+      builder: (context, child) => MediaQuery(data: MediaQuery.of(context).copyWith(alwaysUse24HourFormat: true), child: child!),
       debugShowCheckedModeBanner: false,
       localizationsDelegates: [
         // 本地化的代理类

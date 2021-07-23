@@ -1,4 +1,5 @@
 import 'package:flutter_framework/config/apis.dart';
+import 'package:flutter_framework/model/base_model.dart';
 import 'package:flutter_framework/model/login_model.dart';
 import 'package:flutter_framework/services/service_interface.dart';
 import 'package:flutter_framework/utils/common_util.dart';
@@ -6,28 +7,28 @@ import 'package:flutter_framework/utils/http_util.dart';
 
 class RequestService implements ServiceInterface {
   // 内部实例
-  static RequestService _internal;
+  static RequestService? _internal;
 
   // 工厂构造函数，以实现单例
   factory RequestService() {
     if (_internal == null) {
       _internal = new RequestService.internal();
     }
-    return _internal;
+    return _internal!;
   }
 
   // 命名构造函数，将返回类实例
   RequestService.internal();
 
   @override
-  Future<LoginModel> toLogin(Map<String, String> params) async {
+  Future<LoginModel?> toLogin(Map<String, String> params) async {
     try {
-      final res = await HttpUtils().post(Api.login, data: {});
+      final BaseModel res = await HttpUtils().post(Api.login, data: {});
       if (res.code == 0) {
         return LoginModel.fromJson(res.data);
       } else if (res.code == 4001) {
-        CommonUtils.showToast(res.msg);
-        throw res.code;
+        CommonUtils.showToast(res.msg!);
+        throw res.code!;
       }
       return null;
     } catch (e) {
@@ -37,7 +38,6 @@ class RequestService implements ServiceInterface {
   }
 
   void handleHttpError(String statusCode) {
-    if (statusCode == null) return;
     if (statusCode == '500') {
       CommonUtils.showToast("服务器内部错误，无法完成请求");
     } else if (statusCode == '502') {

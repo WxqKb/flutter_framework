@@ -16,7 +16,7 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-       body: ScrollConfiguration(
+      body: ScrollConfiguration(
         behavior: DefaultBehavior(),
         child: ListView(
           children: [
@@ -61,10 +61,13 @@ class _LoginPageState extends State<LoginPage> {
                           hintText: "请输入用户名",
                           isDense: true,
                           icon: Icon(Icons.person, size: 20),
-                          hintStyle: TextStyle(color: Colors.grey, fontSize: 14),
+                          hintStyle:
+                              TextStyle(color: Colors.grey, fontSize: 14),
                         ),
                         validator: (value) {
-                          return value.trim().length > 0 ? null : "必填选项";
+                          return (value?.trim().length ?? 0) > 0
+                              ? null
+                              : "必填选项";
                         }),
                   ),
                   Container(
@@ -75,27 +78,26 @@ class _LoginPageState extends State<LoginPage> {
                         decoration: InputDecoration(
                           isDense: true,
                           hintText: '请输入登录密码',
-                          hintStyle: TextStyle(color: Colors.grey, fontSize: 14),
+                          hintStyle:
+                              TextStyle(color: Colors.grey, fontSize: 14),
                           icon: Icon(Icons.lock, size: 20),
                         ),
                         //是否是密码
                         obscureText: true,
                         validator: (value) {
-                          return value.length > 0 ? null : '必填选项';
+                          return (value?.length ?? 0) > 0 ? null : '必填选项';
                         }),
                   ),
                 ],
               ),
             ),
             Container(
-              margin: EdgeInsets.only(top: 80,left: 30,right: 30),
+              margin: EdgeInsets.only(top: 80, left: 30, right: 30),
               height: 45,
-              child: new RaisedButton(
+              child: new ElevatedButton(
                 onPressed: () {
                   NavigatorUtils.push(context, '/home', replace: true);
                 },
-                color: Theme.of(context).primaryColor,
-                shape: StadiumBorder(),
                 child: new Text(
                   "登录",
                   style: new TextStyle(color: Colors.white, fontSize: 16),

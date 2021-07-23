@@ -19,8 +19,8 @@ class _AnimationPageState extends State<AnimationPage> with TickerProviderStateM
   bool isShowCar = false;
 
   /// 动画
-  AnimationController _animationController_01, _animationController_02, _animationController_03;
-  Animation _animation;
+  late AnimationController _animationController_01, _animationController_02, _animationController_03;
+  late Animation _animation;
 
   @override
   void initState() {
@@ -144,9 +144,9 @@ class _AnimationPageState extends State<AnimationPage> with TickerProviderStateM
         {
           widget = GestureDetector(
             onTap: () {
-              RenderBox renderBox = _key.currentContext.findRenderObject();
+              RenderBox renderBox = _key.currentContext?.findRenderObject() as RenderBox;
               var offset = renderBox.localToGlobal(Offset(renderBox.size.width * 0.5, renderBox.size.height * 0.5));
-              RenderBox carRender = _key_2.currentContext.findRenderObject();
+              RenderBox carRender = _key_2.currentContext!.findRenderObject() as RenderBox;
               var offset_2 = carRender.localToGlobal(Offset(carRender.size.width * 0.5, carRender.size.height * 0.5));
               setState(() {
                 startOffset = offset;

@@ -18,7 +18,7 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 version: 1.0.0+1
 
 environment:
-  sdk: ">=2.7.0 <3.0.0"
+  sdk: '>=2.12.0 <3.0.0'
 
 dependencies:
   flutter:
@@ -28,50 +28,50 @@ dependencies:
   flutter_localizations:
     sdk: flutter
 
-  cupertino_icons: ^1.0.0
+  cupertino_icons: ^1.0.3
   # 国际化多语言组件
-  intl: ^0.16.1
+  intl: ^0.17.0
   # 网络请求组件
-  dio: ^3.0.10
+  dio: ^4.0.0
   # 状态管理组件
-  provider: ^4.3.2+3
+  provider: ^5.0.0
   # 本地存储组件
-  shared_preferences: ^0.5.12+4
+  shared_preferences: ^2.0.6
   # 屏幕适配组件
-  flutter_screenutil: ^4.0.2+3
+  flutter_screenutil: ^5.0.0+2
   # 吐司弹框组件
-  fluttertoast: ^7.1.6
+  fluttertoast: ^8.0.7
   # 事件通信组件
-  event_bus: ^1.1.1
+  event_bus: ^2.0.0
   # 通用工具类组件
-  common_utils: ^1.0.9
+  common_utils: ^2.0.2
   # 路由管理组件
-  fluro: ^1.7.8
+  fluro: ^2.0.3
   # 文件系统组件
-  path_provider: ^1.6.27
+  path_provider: ^2.0.2
   # 权限管理组件
-  permission_handler: ^5.0.1+1
+  permission_handler: ^8.1.2
 
 
   # webSocket组件
-  web_socket_channel: ^1.1.0
+  web_socket_channel: ^2.1.0
   # 打开本地文件组件
-  open_file: ^3.0.3
+  open_file: ^3.2.1
   # 拍照、图片选择组件
-  image_picker: ^0.6.0+20
+  image_picker: ^0.8.1+3
   # 轮播图组件
-  flutter_swiper: ^1.1.6
+  flutter_card_swipper: ^0.4.0
   # 多媒体播放组件
-  video_player: ^1.0.1
+  video_player: ^2.1.6
   # 徽章提示组件
-  badges: ^1.1.6
+  badges: ^2.0.1
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
 
   # intl构建多语言工具包
-  intl_translation: ^0.17.2
+#  intl_translation: ^0.17.2
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 

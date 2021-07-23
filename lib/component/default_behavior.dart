@@ -8,7 +8,11 @@ class DefaultBehavior extends ScrollBehavior {
     if (Platform.isAndroid || Platform.isFuchsia) {
       return child;
     } else {
-      return super.buildViewportChrome(context, child, axisDirection);
+      return super.buildOverscrollIndicator(
+          context,
+          child,
+          ScrollableDetails(
+              direction: axisDirection, controller: ScrollController()));
     }
   }
 }

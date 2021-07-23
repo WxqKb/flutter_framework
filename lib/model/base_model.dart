@@ -1,8 +1,8 @@
 class BaseModel<T> {
-  int httpStatus;
-  int code;
-  String msg;
-  T data;
+  int? httpStatus;
+  int? code;
+  String? msg;
+  T? data;
 
   BaseModel(this.httpStatus, this.code, this.msg, this.data);
 

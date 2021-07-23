@@ -12,7 +12,7 @@ import 'dart:async';
 enum Method { get, post, put, patch, delete }
 
 class HttpUtils {
-  static Dio dio;
+  static Dio? dio;
 
 //  构造方法+单例模式
   HttpUtils() {
@@ -22,7 +22,7 @@ class HttpUtils {
   }
 
   /// 创建 dio 实例对象
-  static Dio getInstance() {
+  static Dio? getInstance() {
     if (dio == null) {
       BaseOptions baseOptions = new BaseOptions(
         baseUrl: Constants.BASE_URL,
@@ -33,26 +33,34 @@ class HttpUtils {
         },
       );
       dio = new Dio(baseOptions);
-      dio.interceptors.add(
-        InterceptorsWrapper(onRequest: (RequestOptions requestOptions) async {
-          requestOptions.contentType = requestOptions.contentType ?? 'application/json';
+      dio!.interceptors.add(
+        InterceptorsWrapper(onRequest: (RequestOptions requestOptions,
+            RequestInterceptorHandler handler) async {
+          requestOptions.contentType =
+              requestOptions.contentType ?? 'application/json';
           // 请求拦截，加入token
-          String token = SpUtil.getString("token") ?? '';
+          String token = SpUtil.getString("token");
           Map<String, String> headers = {"token": token};
           requestOptions.headers = headers;
-          return requestOptions;
-        }, onResponse: (Response response) {
-          if (response?.statusCode == HttpStatus.unauthorized) {
+          handler.next(requestOptions);
+          return;
+        }, onResponse: (Response response, ResponseInterceptorHandler handler) {
+          if (response.statusCode == HttpStatus.unauthorized) {
             SpUtil.clear();
             // token失效时，重定向到登录页
-            NavigatorUtils.push(RouterConfig.navigatorState.currentContext, '/enter/login', clearStack: true);
+            NavigatorUtils.push(
+                RouterConfig.navigatorState.currentContext!, '/enter/login',
+                clearStack: true);
           }
-          return response;
-        }, onError: (DioError error) {
-          if (error.response?.statusCode == HttpStatus.unauthorized || error.response?.statusCode == HttpStatus.forbidden) {
+          handler.next(response);
+          return;
+        }, onError: (DioError error, ErrorInterceptorHandler handler) {
+          if (error.response?.statusCode == HttpStatus.unauthorized ||
+              error.response?.statusCode == HttpStatus.forbidden) {
             SpUtil.clear();
           }
-          return error; //continue
+          handler.reject(error);
+          return; //continue
         }),
       );
     }
@@ -86,38 +94,39 @@ class HttpUtils {
     return _request(url, method: Method.post, data: data);
   }
 
-  Future<BaseModel> _request(String url, {Method method, data}) async {
+  Future<BaseModel> _request(String url, {required Method method, data}) async {
     try {
       Response response;
       switch (method) {
         case Method.get:
           {
             Options option = new Options(method: 'get');
-            response = await dio.get(url, queryParameters: data, options: option);
+            response =
+                await dio!.get(url, queryParameters: data, options: option);
             break;
           }
         case Method.post:
           {
             Options option = new Options(method: 'post');
-            response = await dio.post(url, data: data, options: option);
+            response = await dio!.post(url, data: data, options: option);
             break;
           }
         case Method.put:
           {
             Options option = new Options(method: 'post');
-            response = await dio.put(url, data: data, options: option);
+            response = await dio!.put(url, data: data, options: option);
             break;
           }
         case Method.patch:
           {
             Options option = new Options(method: 'patch');
-            response = await dio.patch(url, data: data, options: option);
+            response = await dio!.patch(url, data: data, options: option);
             break;
           }
         case Method.delete:
           {
             Options option = new Options(method: 'delete');
-            response = await dio.delete(url, data: data, options: option);
+            response = await dio!.delete(url, data: data, options: option);
             break;
           }
       }
@@ -126,17 +135,17 @@ class HttpUtils {
       if (commentModel.httpStatus == HttpStatus.ok) {
         if (commentModel.code == 401) {
           CommonUtils.showToast('会话失效，请重新登录');
-          return null;
+          throw (DioError(requestOptions: response.requestOptions));
         } else {
           return commentModel;
         }
       } else {
         /// 完成通信，但HttpStatus错误，需要抛给业务层去解决
-        throw commentModel.httpStatus;
+        throw commentModel.httpStatus ?? 500;
       }
     } on DioError catch (e) {
       _handError(e);
-      return null;
+      throw e;
     }
   }
 
@@ -148,8 +157,9 @@ class HttpUtils {
     print('----------Http Log Start----------');
     try {
       print('[statusCode]: ${response.statusCode.toString()}');
-      print('[request]: method = ${response.request.method}, baseUrl = ${response.request.baseUrl}, path: ${response.request.path}');
-      print('[requestData]:${response.request.data.toString()}');
+      print(
+          '[request]: method = ${response.requestOptions.method}, baseUrl = ${response.requestOptions.baseUrl}, path: ${response.requestOptions.path}');
+      print('[requestData]:${response.requestOptions.data.toString()}');
       print('[responseData]:${response.data.toString()}');
     } catch (ex) {
       print('Http log error: $ex');
@@ -159,21 +169,19 @@ class HttpUtils {
 
   /// error统一处理
   static void _handError(DioError e) {
-    if (e != null) {
-      print(" ------------- Error Msg ------------" + e.toString());
-      if (e.type == DioErrorType.CONNECT_TIMEOUT) {
-        CommonUtils.showToast("连接超时");
-      } else if (e.type == DioErrorType.SEND_TIMEOUT) {
-        CommonUtils.showToast("请求超时");
-      } else if (e.type == DioErrorType.RECEIVE_TIMEOUT) {
-        CommonUtils.showToast("响应超时");
-      } else if (e.type == DioErrorType.RESPONSE) {
-        CommonUtils.showToast('无法访问服务器,请稍后再试');
-      } else if (e.type == DioErrorType.CANCEL) {
-        CommonUtils.showToast("请求取消");
-      } else {
-        CommonUtils.showToast("未知错误");
-      }
+    print(" ------------- Error Msg ------------" + e.toString());
+    if (e.type == DioErrorType.connectTimeout) {
+      CommonUtils.showToast("连接超时");
+    } else if (e.type == DioErrorType.sendTimeout) {
+      CommonUtils.showToast("请求超时");
+    } else if (e.type == DioErrorType.receiveTimeout) {
+      CommonUtils.showToast("响应超时");
+    } else if (e.type == DioErrorType.response) {
+      CommonUtils.showToast('无法访问服务器,请稍后再试');
+    } else if (e.type == DioErrorType.cancel) {
+      CommonUtils.showToast("请求取消");
+    } else {
+      CommonUtils.showToast("未知错误");
     }
     print("<net> errorMsg :" + e.message);
   }

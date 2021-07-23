@@ -6,7 +6,7 @@ var sockets = new WebSocketUtil();
 class WebSocketUtil {
   static final WebSocketUtil _webSocketUtil = new WebSocketUtil._internal();
   bool _isConnect = false;
-  IOWebSocketChannel _channel;
+  late IOWebSocketChannel _channel;
   ObserverList<Function> _webSocketListeners = new ObserverList<Function>();
   WebSocketUtil._internal();
 
@@ -19,17 +19,14 @@ class WebSocketUtil {
   void initWebSocket(String wsUrl) {
     closed();
     _channel = IOWebSocketChannel.connect(wsUrl);
-    _channel.stream.listen(receptionMessage, onError: _onError, onDone: _onDone);
+    _channel.stream
+        .listen(receptionMessage, onError: _onError, onDone: _onDone);
   }
 
 //  关闭webSocket
   closed() {
-    if (_channel != null) {
-      if (_channel.sink != null) {
-        _channel.sink.close();
-        _isConnect = false;
-      }
-    }
+    _channel.sink.close();
+    _isConnect = false;
   }
 
 //  加入订阅者
@@ -55,10 +52,8 @@ class WebSocketUtil {
 
 //  发送消息
   sendMessage(msg) {
-    if (_channel != null) {
-      if (_channel.sink != null && _isConnect) {
-        _channel.sink.add(msg);
-      }
+    if (_isConnect) {
+      _channel.sink.add(msg);
     }
   }
 

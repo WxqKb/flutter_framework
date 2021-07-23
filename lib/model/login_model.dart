@@ -1,6 +1,6 @@
 class LoginModel{
-  String userName;
-  int id;
+  String? userName;
+  int? id;
 
   LoginModel.fromJson(Map<String, dynamic> json){
     userName = json.containsKey('user_name')?json['user_name']:null;
